@@ -16,11 +16,20 @@ export default function HomePage() {
   }, [])
 
   const getTotalCount = async () => {
-    const { count } = await supabase
-      .from('enterprises')
-      .select('*', { count: 'exact', head: true })
-    
-    setTotalCount(count || 0)
+    try {
+      const { count, error } = await supabase
+        .from('enterprises')
+        .select('*', { count: 'exact', head: true })
+      
+      if (error) {
+        console.error('Error getting count:', error)
+        return
+      }
+      
+      setTotalCount(count || 0)
+    } catch (err) {
+      console.error('Error in getTotalCount:', err)
+    }
   }
 
   const handleSearch = async (term: string) => {
@@ -31,14 +40,23 @@ export default function HomePage() {
 
     setLoading(true)
     
-    const { data } = await supabase
-      .from('enterprises')
-      .select('*')
-      .or(`enterprise_name.ilike.%${term}%,state_name.ilike.%${term}%,district_name.ilike.%${term}%`)
-      .limit(20)
-    
-    if (data) {
-      setEnterprises(data)
+    try {
+      const { data, error } = await supabase
+        .from('enterprises')
+        .select('*')
+        .or(`enterprise_name.ilike.%${term}%,state_name.ilike.%${term}%,district_name.ilike.%${term}%`)
+        .limit(20)
+      
+      if (error) {
+        console.error('Search error:', error)
+        return
+      }
+      
+      if (data) {
+        setEnterprises(data)
+      }
+    } catch (err) {
+      console.error('Error in handleSearch:', err)
     }
     
     setLoading(false)
