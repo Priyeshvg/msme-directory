@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next'
 import { supabase } from '@/lib/supabase'
+import { siteConfig } from '@/lib/config'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://msme-directory.vercel.app'
+  const baseUrl = siteConfig.url
 
   // Get all enterprises for dynamic URLs
   const { data: enterprises } = await supabase

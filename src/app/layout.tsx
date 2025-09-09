@@ -57,11 +57,11 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "MSME Directory",
-              "url": "https://msme-directory.vercel.app",
+              "url": process.env.NEXT_PUBLIC_SITE_URL || "https://msme-directory.vercel.app",
               "description": "Comprehensive directory of MSME enterprises across India",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://msme-directory.vercel.app/?search={search_term_string}",
+                "target": (process.env.NEXT_PUBLIC_SITE_URL || "https://msme-directory.vercel.app") + "/?search={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })
