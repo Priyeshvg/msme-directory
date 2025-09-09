@@ -31,7 +31,7 @@ export default function HomePage() {
 
     setLoading(true)
     
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from('enterprises')
       .select('*')
       .or(`enterprise_name.ilike.%${term}%,state_name.ilike.%${term}%,district_name.ilike.%${term}%`)

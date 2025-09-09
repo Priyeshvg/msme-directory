@@ -143,7 +143,7 @@ export default function FAQPage() {
             Still have questions?
           </h2>
           <p className="text-gray-600 mb-6">
-            Can't find what you're looking for? Visit the official MSME portal for more information.
+            Can&apos;t find what you&apos;re looking for? Visit the official MSME portal for more information.
           </p>
           <div className="space-y-4">
             <a
