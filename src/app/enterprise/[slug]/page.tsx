@@ -1,10 +1,10 @@
-import { supabase, type Enterprise } from '@/lib/supabase'
+import { supabase, type Enterprise, type EnterpriseActivity } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Metadata } from 'next'
 
 interface EnterprisePageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 // Generate metadata for SEO

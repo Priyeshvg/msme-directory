@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 
 interface EnterprisePageProps {
-  params: { state: string; slug: string }
+  params: Promise<{ state: string; slug: string }>
 }
 
 // Generate metadata for SEO
