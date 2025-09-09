@@ -8,20 +8,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get all enterprises for dynamic URLs
   const { data: enterprises } = await supabase
     .from('enterprises')
-    .select('id, enterprise_name, updated_at')
+    .select('id, enterprise_name, state_name, pincode, updated_at')
     .limit(1000) // Limit for sitemap size
 
   const enterpriseUrls = enterprises?.map((enterprise) => {
-    const slug = enterprise.enterprise_name
+    const stateName = enterprise.state_name.toLowerCase().replace(/\s+/g, '-')
+    const companySlug = enterprise.enterprise_name
       .toLowerCase()
       .replace(/[^a-z0-9\s]/g, '')
-      .replace(/\s+/g, '-') + '-' + enterprise.id
+      .replace(/\s+/g, '-')
+    const pincode = enterprise.pincode || '000000'
 
     return {
-      url: `${baseUrl}/enterprise/${slug}`,
+      url: `${baseUrl}/${stateName}/${companySlug}-${pincode}`,
       lastModified: enterprise.updated_at ? new Date(enterprise.updated_at) : new Date(),
       changeFrequency: 'monthly' as const,
-      priority: 0.6,
+      priority: 0.7,
     }
   }) || []
 

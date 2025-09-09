@@ -63,11 +63,13 @@ export default function HomePage() {
   }
 
   const createSlug = (enterprise: Enterprise) => {
+    const stateName = enterprise.state_name.toLowerCase().replace(/\s+/g, '-')
     const companySlug = enterprise.enterprise_name.toLowerCase()
       .replace(/[^a-z0-9\s]/g, '')
       .replace(/\s+/g, '-')
+    const pincode = enterprise.pincode || '000000'
     
-    return `/enterprise/${companySlug}-${enterprise.id}`
+    return `/${stateName}/${companySlug}-${pincode}`
   }
 
   return (

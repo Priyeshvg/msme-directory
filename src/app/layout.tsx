@@ -57,11 +57,11 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "MSME Directory",
-              "url": process.env.NEXT_PUBLIC_SITE_URL || "https://thepeakai.com/msme",
+              "url": process.env.NEXT_PUBLIC_SITE_URL || "https://thepeakai.com",
               "description": "Comprehensive directory of MSME enterprises across India",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": (process.env.NEXT_PUBLIC_SITE_URL || "https://thepeakai.com/msme") + "/?search={search_term_string}",
+                "target": (process.env.NEXT_PUBLIC_SITE_URL || "https://thepeakai.com") + "/?search={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })
